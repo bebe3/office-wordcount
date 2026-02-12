@@ -8,17 +8,10 @@ from __future__ import annotations
 import json
 import sys
 from collections.abc import Sequence
-from typing import TYPE_CHECKING, TypeIs
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from word_count.statistics import Statistics
-
-
-def _is_multiple(
-    stats: Statistics | Sequence[tuple[str, Statistics]],
-) -> TypeIs[Sequence[tuple[str, Statistics]]]:
-    """Check if stats represents multiple file results."""
-    return isinstance(stats, Sequence) and not isinstance(stats, str)
 
 
 def format_json(
@@ -38,7 +31,7 @@ def format_json(
     Returns:
         JSON-formatted string.
     """
-    if _is_multiple(stats):
+    if isinstance(stats, Sequence):
         result: dict[str, dict[str, int] | list[dict[str, int | str]]] = {
             "files": [{"file": name, **stat.to_dict()} for name, stat in stats]
         }
@@ -63,7 +56,7 @@ def format_table(
     Returns:
         ASCII table formatted string.
     """
-    if _is_multiple(stats):
+    if isinstance(stats, Sequence):
         return _format_multiple_table(stats, total=total)
     return _format_single_table(stats)
 
