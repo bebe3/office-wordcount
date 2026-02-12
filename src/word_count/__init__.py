@@ -14,7 +14,7 @@ from word_count.counter import (
 )
 from word_count.statistics import Statistics
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __all__ = [
     "Statistics",
     "__version__",

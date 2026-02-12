@@ -1,6 +1,6 @@
 [project]
 name = "office-wordcount"
-version = "1.0.0"
+version = "1.0.1"
 description = "A word counting tool that handles mixed Asian and non-Asian text like Microsoft Office"
 readme = "README.md"
 license = "MIT"
